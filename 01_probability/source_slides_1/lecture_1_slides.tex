@@ -32,13 +32,13 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,decorations.markings,positioning}
 \usepackage{epstopdf}
-\title{Lecture 1: Introducing Probability}
-\author{COMSM0014 Mathematics for Computer Science A}
+\title{Lecture 1: Introducing probability}
+\author{COMS10014 Mathematics for Computer Science A}
 \institute{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
 \date{November 2020}
 \begin{document}
 \maketitle
-\begin{frame}{What is probability}
+\begin{frame}{What is probability?}
   \begin{quote}
     Probability is a set of mathematical definitions and theorems that
     are useful for reasoning about randomness and uncertainty
@@ -50,7 +50,7 @@
     \includegraphics[width=3cm]{1d.jpg}
     \end{center}
   A fair coin has a one in two chance of turning up harps, if each spin is independent it has a probability of
-  \crish$$P(\mbox{six heads in a row})=\left(\frac{1}{2}\right)^6=0.015625$$\cbla{}
+  \crish$$P(\mbox{six harps in a row})=\left(\frac{1}{2}\right)^6=0.015625$$\cbla{}
 \end{frame}
 
 \begin{frame}{Frequentist statistics}
@@ -62,6 +62,19 @@ so if you spun a coin six times and it came up harps each time you can
 be 98.5\% certain the coin is not fair, maybe.
 \end{frame}
 
+\begin{frame}{Frequentist statistics}
+    \begin{center}
+    \includegraphics[width=3cm]{1d.jpg}
+    \end{center}
+A fair coin has a 1.5\% chance of coming up harps six times in a row,
+so if you spun a coin six times and it came up harps each time you can
+be 98.5\% certain the coin is not fair, maybe.
+\cblu{}
+If you include all heads and heads-harps-heads-harps-heads-harps and
+harps-heads-harps-heads-harps-heads in your list of `weird' outcomes
+then there is a 6$\%$ chance of getting a `weird' outcome.\cbla{}
+\end{frame}
+
 \begin{frame}{Bayesian statistics}
   \cred{}Aoife\cbla{}  tells \cblu{}Brendan\cbla{}  she has spun a coin six times and taken down the
   sequence. As far as \cblu{}Brendan\cbla{}  is concerned all 64 outcomes are equally
@@ -71,7 +84,7 @@ be 98.5\% certain the coin is not fair, maybe.
   equally likely.
 \end{frame}
 
-\begin{frame}{What is probability}
+\begin{frame}{What is probability?}
   \begin{quote}
     Probability is a set of mathematical definitions and theorems that
     are useful for reasoning about randomness and uncertainty
