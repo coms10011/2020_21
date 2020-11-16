@@ -40,7 +40,7 @@
 \begin{document}
 \maketitle
 \begin{frame}{Don't stop counting}
-  Recall that \crish$P(A\cup B)=P(A)+P(B)$\cbla{}  if \crish$A\cap B=\emptyset$\cbla{}. In a discrete sample space an event can be written as the union of all the outcomes it contains, if \crish$$A==\{a_1,a_2,\ldots,a_k\}$$\cbla{}then
+  Recall that \crish$P(A\cup B)=P(A)+P(B)$\cbla{}  if \crish$A\cap B=\emptyset$\cbla{}. In a discrete sample space an event can be written as the union of all the outcomes it contains, if \crish$$A=\{a_1,a_2,\ldots,a_k\}$$\cbla{}then
   \crish$$A=\{a_1\}\cup\{a_2\}\cup\ldots\cup\{a_k\}$$\cbla{}
   so
   \crish$$
@@ -64,7 +64,7 @@
     \begin{center}
     \includegraphics[width=3cm]{1d.jpg}
     \end{center}
-A coin is flipped six times, what is the probability of getting the same result each time? 
+A coin is flipped six times, what is the probability of getting all flips giving the same results? 
 \end{frame}
 
 
@@ -99,7 +99,7 @@ A coin is flipped six times, what is the probability of getting the same result 
     If a coin is flipped six times the set of outcomes looks like
     \crish$$X=\{HHHHHH,HHHHHT,HHHHTH,\ldots,TTTTTT\}$$\cbla{}
     The elements look like
-    \crish$$\{\cblu{}T\crish{}BCDEF\}$$\cbla{}
+    \crish$$\{\cgre{}T\crish{}BCDEF\}$$\cbla{}
     where each element can be a \cblu$H$\cbla{} or a \cgre$T$\cbla{}
 \end{frame}
 
@@ -123,7 +123,7 @@ A coin is flipped six times, what is the probability of getting the same result 
     If a coin is flipped six times the set of outcomes looks like
     \crish$$X=\{HHHHHH,HHHHHT,HHHHTH,\ldots,TTTTTT\}$$\cbla{}
     The elements look like
-    \crish$$\{A\cblu{}T\crish{}CDEF\}$$\cbla{}
+    \crish$$\{A\cgre{}T\crish{}CDEF\}$$\cbla{}
     where each element can be a \cblu$H$\cbla{} or a \cgre$T$\cbla{}
 \end{frame}
 
@@ -147,7 +147,7 @@ A coin is flipped six times, what is the probability of getting the same result 
     If a coin is flipped six times the set of outcomes looks like
     \crish$$X=\{HHHHHH,HHHHHT,HHHHTH,\ldots,TTTTTT\}$$\cbla{}
     The elements look like
-    \crish$$\{AB\cblu{}T\crish{}DEF\}$$\cbla{}
+    \crish$$\{AB\cgre{}T\crish{}DEF\}$$\cbla{}
     where each element can be a \cblu$H$\cbla{} or a \cgre$T$\cbla{}
 \end{frame}
 
@@ -336,7 +336,7 @@ where we are using \crish$[A]^r$\cbla{} for the set of subsets of \crish$A$\cbla
   \crish$$  (x+y)^n=\sum_{r=0}^n \left(\begin{array}{c}n\\r\end{array}\right)x^ry^{n-r}$$\cbla{}
   We can use this to check our formulas make sense, clearly
 \crish$$
-  \mathcal{P}(A)={}\cup [A]^1\cup [A]^2\cup \ldots \cup [A]^n
+  \mathcal{P}(A)=\emptyset\cup [A]^1\cup [A]^2\cup \ldots \cup [A]^n
 $$\cbla{}
 so we would expect
 \crish$$
