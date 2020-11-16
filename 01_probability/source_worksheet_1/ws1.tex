@@ -1,0 +1,122 @@
+%ps1.tex
+%notes for the course Probability and Statistics COMS10011 
+%taught at the University of Bristol
+%2019_20 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\lfoot{COMS10014 - P\&C ws1 - Conor}
+\begin{document}
+
+\section*{Probability and Combinatorics Worksheet 1}
+
+\subsection*{Useful facts}
+
+\begin{itemize}
+
+\item The \textbf{power set}, $\mathcal{P}(A)$, is the set of subsets of $A$:
+  \begin{equation}
+    \#(\mathcal{P}(A))=2^{\#(A)}
+  \end{equation}
+
+\item\textbf{Factorial}: the number of ways to order $n$ elements is
+  \begin{equation}
+    n!=n\times(n-1)\times\ldots\times2\times1
+  \end{equation}
+  
+\item \textbf{Combinations}: The number of ways of choosing $r$ items out of $n$ is 
+\begin{equation}
+\left(\begin{array}{c}n\\r\end{array}\right)=\frac{n(n-1)(n-2)\ldots(n-r+1)}{r(r-1)(r-2)\ldots 1}=\frac{n!}{r!(n-r)!} 
+\end{equation}
+
+
+\item \textbf{Combinations}: The number of ways of splitting $n$ items into sets of size $r_1$, $r_2$ through to $r_k$ with
+  \begin{equation}
+    r_1+r_2+\ldots+r_k=n
+  \end{equation}
+  is
+\begin{equation}
+\left(\begin{array}{c}n\\r_1,r_2,\ldots,r_k\end{array}\right)=\frac{n!}{r_1!r_2!\ldots r_k!} 
+\end{equation}
+ 
+\item \textbf{Cards}: 52 cards made up of four suits; in each suit
+  there are 13 values, ace, two through to ten and the jack, queen,
+  king.
+
+\item \textbf{Poker hands}: the number of poker hands is 
+\begin{equation}
+\left(\begin{array}{c}52\\5\end{array}\right)= 2598960
+\end{equation}
+
+\end{itemize}
+
+
+\subsection*{Questions}
+
+These are the questions you should make sure you work on in the workshop.
+
+\begin{enumerate}
+
+\item In the poker hand \textsl{two pair} there are two pairs of cards
+  with each card in the pair matched by value; the fifth card has a
+  different value to either pair. What is the probability of two pairs
+  when five cards are drawn randomly.
+
+
+\item In a \textsl{full house} there is one
+  pair and one triple, what is the probability of getting a full
+  house?
+
+\item How many anagrams are there of the word `COVID'?
+
+\item How many distinct anagrams are there of the word `CUMMINGS'?
+  
+\end{enumerate}
+
+\subsection*{Extra questions}
+
+These are extra questions you might attempt in the workshop or at a later time.
+
+\begin{enumerate}
+
+\item When it started in 1987 the Irish lottery has 36 numbers;
+  participants paid 50 Irish pence to buy a combination of six
+  different numbers; they would win if these numbers matched the six
+  drawn. In the last week in May in 1992 a syndicate tried to buy all
+  combinations of numbers. If they had succeeded how many numbers
+  would they have bought? In the event the lottery shut down lots of
+  the lottery machines so they only bought most of the numbers, they
+  nonetheless had the winning number but shared the prize three
+  ways. However, because of the roll-over prize and the match-5 and
+  match-4 prizes, they are thought to have made a substantial
+  profit. The lottery was redesigned after this to have more numbers.
+
+
+\item From a group of three undergraduates and five graduate students,
+  four students are randomly selected to act as TAs. What is the
+  chance there will be exactly two undergraduate TAs?
+
+\item Prove
+\begin{equation}
+\left(\begin{array}{c}n\\r\end{array}\right)=\left(\begin{array}{c}n\\n-r\end{array}\right)
+\end{equation}
+
+\item How many distinct anagrams has the word `OROONOKO'?
+
+
+\end{enumerate}
+
+\end{document}
+
