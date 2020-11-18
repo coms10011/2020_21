@@ -1,0 +1,67 @@
+%ps1.solns.tex
+%notes for the course Probability and Statistics COMS10011 
+%taught at the University of Bristol
+%2018_19 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\lfoot{COMS10014 - P\&C ws2 solns - Conor}
+\begin{document}
+
+\section*{Worksheet 2 - outline solutions}
+
+\subsection*{Questions}
+
+\begin{enumerate}
+\item How many distinct anagrams has the word `BOOKKEEPER'?\\ \\ \\
+  \textbf{Solution}: So ten slots to split into a group of three, for the `E's, two groups of two for the 'O's and the 'K's and three groups of one for the 'B', 'P' and 'R':
+  \begin{equation}
+      n=\left(\begin{array}{c}10\\3,2,2,1,1,1\end{array}\right)-1=\frac{10!}{3!2!2!}-1=151199
+  \end{equation}
+
+  
+\item Two events $A$ and $B$ have probabilities $P(A)=0.2$, $P(B)=0.3$ and $P(A\cup B)=0.4$. Find
+\begin{enumerate}
+\item Find $P(A\cap B)$.
+\item Find $P(\bar{A}\cap \bar{B})$.
+\item Find $P(A|B)$.
+\end{enumerate}
+\textbf{Solution}: So
+\begin{equation}
+P(A\cup B)=P(A)+P(B)-P(A\cap B)
+\end{equation}
+so 
+\begin{equation}
+P(A\cap B)=0.2+0.3-0.4=0.1
+\end{equation}
+If $P(A\cap B)=0.1$ then $P(\bar{A}\cap B)=P(B)-P(A\cap B)=0.2$. One the other hand
+$P(\bar{A}\cap \bar{B})=1-P(A\cup B)=0.6$. Finally
+\begin{equation}
+P(A|B)=\frac{P(A\cap B)}{P(B)}=\frac{0.1}{0.3}=\frac{1}{3}
+\end{equation}
+
+  
+\end{enumerate}
+  
+\subsection*{Extra questions}
+
+\begin{enumerate}
+
+\end{enumerate}
+  
+
+
+\end{document}
+
