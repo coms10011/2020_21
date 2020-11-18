@@ -1,0 +1,218 @@
+%8_Gauss_distribution
+%notes for the course Probability and Statistics COMS10011
+%taught at the University of Bristol
+%Conor Houghton conor.houghton@bristol.ac.uk
+%To the extent possible under law, the author has dedicated all copyright
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+
+
+\newif\ifind
+\indtrue
+
+
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{github.com/COMS10011/2018\_19}}
+\lhead{COMS100011 9\_Gauss\_distribution - Conor}
+\begin{document}
+
+\section*{8 The Gau\ss{}ian distribtion}
+
+Recall how continuous probability distributions work, they are defined
+in terms of a density function $p(x)$ where $p(x)$ is like the
+probability per length, so 
+\begin{equation}
+\mbox{Prob}(x_1<x<x2)=\int_{x_1}^{x_2} p(x)dx
+\end{equation}
+We used $f(x)$ for the probability density when we introduced it to
+avoid confusing it with the probabilities that are used for discrete
+random variables. However, like almost everything in statistics it is
+usually just called $p(x)$, or sometimes $p_X(x)$ if there are a few
+random variables around and we want to know which probability density
+goes with which variable.
+
+The Gau\ss\footnote{\ss{} is a German letter equivalent to ss} or Gauss
+or normal or Gau\ss{}ian or Gaussian or bell-curve distribution is a
+continuous distribution which is used to model a whole range of
+natural phenomenon, in fact, much of statistics and almost all
+statistics outside of science, assumes almost everything has a
+Gau\ss{}ian distribution. We will see why later on, basically there is
+a theorem, the Central Limit Theorem, that tells us why the
+Gau\ss{}ian distribution is as common as it is. For now though we will
+look at the distribution and its properties.
+
+\begin{figure}[tb]
+\begin{center}
+\include{fig_gauss}
+\end{center}
+\caption{A normal curve with mean zero and variance one, that is $\mu=0$ and $\sigma^2=1$.\label{fig_gauss}}
+\end{figure}
+
+The Gau\ss{}ian distribution is given by
+\begin{equation}
+p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation}
+It has a classic \lq{}bell\rq{} shape seen in Fig.~\ref{fig_gauss}; it
+looks a bit like a binomial distribution with $p=0.5$. The slightly
+confusing thing is the $1/\sqrt{2\pi\sigma^2}$, that is there to normalize the curve:
+\begin{equation}
+\int_{-\infty}^\infty e^{-x^2/2\sigma^2}dx=\sqrt{2\pi\sigma^2}
+\end{equation}
+This is confusing because we can do this particular definite integral
+going from minus infinity to infinity, but the corresponding
+indefinite integral can't be done in the sense that we can't write
+down a formula in terms of a set of functions we already know. There is a trick
+for doing the definite integral from minus infinity to infinity which
+we won't look at here for reasons of time but is very nice if you want
+to look it up. Of course, since the integral goes from minus infinity
+to infinity shifting the $x$ around doesn't change the value:
+\begin{equation}
+\int_{-\infty}^\infty e^{-(x-\mu)^2/2\sigma^2}dx=\sqrt{2\pi\sigma^2}
+\end{equation}
+where $\mu$ is a constant. We will see that the mean is $\mu$ and the variance
+$\sigma^2$, just as we'd hope, that's why these particular symbols
+were used in the formula for the density.
+
+The Gau\ss{}ian distribution is sometimes described as
+$\mathcal{N}(\mu,\sigma^2)$; this notation is a little confusing, it is never
+really specified what \lq{}described as\rq{} means, but roughly
+speaking people write $X\sim \mathcal{N}(\mu,\sigma^2)$ as a shorthand for say
+$X$ is normally distributed with mean $\mu$ and variance $\sigma^2$
+
+\subsection*{The mean}
+
+As we noted above, obviously when the constants were named $\mu$ and
+$\sigma^2$ in the definition of the probability density it was because
+these contants correspond to the mean and variance. We will check this
+by working out the mean; this could be done with an integration by
+parts, but it is more elegant to follow the proceedure we used for
+calculating the mean for the binomial distribution.
+\begin{equation}
+1=Z=\frac{1}{\sqrt{2\pi \sigma^2}}\int_{-\infty}^\infty e^{-(\mu-x)^2/2\sigma^2}dx
+\end{equation}
+so
+\begin{equation}
+0=\frac{dZ}{d\mu}=-\frac{1}{\sqrt{2\pi \sigma^2}}\int_{-\infty}^\infty\frac{\mu-x}{2\sigma^2} e^{-(\mu-x)^2/2\sigma^2}dx
+\end{equation}
+and hence
+\begin{equation}
+\frac{1}{\sqrt{2\pi \sigma^2}}\int_{-\infty}^\infty xe^{-(\mu-x)^2/2\sigma^2}dx=\mu\frac{1}{\sqrt{2\pi \sigma^2}}\int_{-\infty}^\infty e^{-(\mu-x)^2/2\sigma^2}dx=\mu
+\end{equation}
+The left hand side is $\langle x\rangle$ and so we are done. A similar
+approach, either taking the second derivative of $Z$ with respect to
+$\mu$, or the first derivative with respect to $\sigma$ gives the
+variance.
+
+
+\subsection*{Working out Gau\ss{}ian probabilities}
+
+
+\begin{figure}[tb]
+\begin{center}
+\include{fig_prob}
+\end{center}
+\caption{Working out the probability means calculating the area under the curve.\label{fig_prob}}
+\end{figure}
+
+
+\begin{figure}[tb]
+\begin{center}
+\include{fig_erf}
+\end{center}
+\caption{The error function $\mbox{erf}(x)$.\label{fig_erf}}
+\end{figure}
+
+
+Obviously what we'd like to do is work out probabilities:
+\begin{equation}
+\mbox{Prob}(x_1<x<x_2)=\frac{1}{\sqrt{2\pi\sigma^2}}\int_{x_1}^{x_2} e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx
+\end{equation}
+as illustrated in Fig.~\ref{fig_prob}. The problem is that we can't
+do that integral, there is no way to write the integral in terms of
+function we already know. The solution to this problem is to define a
+new function, \textsl{the error function}, specifically for using to
+do the integral:
+\begin{equation}
+\mbox{erf}\,(x)=\frac{1}{\sqrt{\pi}}\int_{-x}^xe^{-y^2}dy=\frac{2}{\sqrt{\pi}}\int_0^xe^{-y^2}dy
+\end{equation}
+This is a so called \textsl{special function} which rougly means a
+function we needed to define so that we could do an integral, or solve
+a differential equation, we couldn't otherwise do or solve. Other
+examples are Bessel functions and the elliptic integrals; there are
+lots, especially coming from applied mathematics. Sometimes some
+number theory functions, like Euler's totient function, are called
+special functions. A lot of effort in the C19 was put into defining
+special functions and finding efficient ways to numerically calculate
+values; in those days, of course, these then went into big tables of
+values; now all of that is done for us by the C \texttt{math} library
+and it successors.
+
+A graph of $\mbox{erf}\,(x)$ is shown in Fig.~\ref{fig_erf}. We can use it to work out Gau\ss{}ian probablities. Consider
+\begin{equation}
+\mbox{Prob}(x_1<x<x_2)=\int_{x_!}^{x_2} p(x)dx=\frac{1}{\sqrt{2\pi\sigma^2}}\int_{x_1}^{x_2} e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx 
+\end{equation}
+Now let
+\begin{equation}
+z=\frac{x-\mu}{\sqrt{2}\sigma}
+\end{equation}
+so 
+\begin{equation}
+dz=\frac{dx}{\sqrt{2}\sigma}
+\end{equation}
+and when $x=x_1$ we have
+\begin{equation}
+z=z_1=\frac{x_1-\mu}{\sqrt{2}\sigma}
+\end{equation}
+and when $x=x_2$ we have
+\begin{equation}
+z=z_2=\frac{x_2-\mu}{\sqrt{2}\sigma}
+\end{equation}
+Substituting this all back into the integral
+\begin{equation}
+\mbox{Prob}(x_1<y<x_2)=\frac{1}{\sqrt{\pi}}\int_{z_1}^{z_2} e^{-z^2}dz=\frac{1}{\sqrt{\pi}}\int_{z_1}^{0} e^{-z^2}dz+\frac{1}{\sqrt{\pi}}\int_{0}^{z_2} e^{-z^2}dz
+\end{equation}
+Hence using the usual 
+\begin{equation}
+\int_a^bf(x)dx=-\int_b^a f(x)dx
+\end{equation}
+we have
+\begin{equation}
+\mbox{Prob}(x_1<x<x_2)=\frac{1}{2}[\mbox{erf}\,(z_2)-\mbox{erf}\,(z_1)]
+\end{equation}
+
+\subsection*{Example}
+
+The loudness of songs at a concert are normally distributed\footnote{There is an inclindation to guess everything is normally distributed. In fact, this seems unlikely in this case, decibels are on a log scale}  with mean 75 dB and standard deviation $\sigma=10 dB$. What is the probability that the next song has loudness between 80 and 90 dB? Well
+\begin{equation}
+\mbox{Prob}(80<x<90)=\frac{1}{2}[\mbox{erf}\,(z_2)-\mbox{erf}\,(z_1)]
+\end{equation}
+where 
+\begin{equation}
+\sqrt{2}z_1=\frac{80-75}{10}=0.5
+\end{equation}
+and 
+\begin{equation}
+\sqrt{2}z_2=\frac{90-75}{10}=1.5
+\end{equation}
+Working out $\mbox{erf}\,(0.5/\sqrt{2})$ using your calculator or computer gives 0.38, whereas $\mbox{erf}\,(1.5/\sqrt{2})=0.87$ so
+\begin{equation}
+\mbox{Prob}(80<x<90)=0.2417
+\end{equation}
+
+\newpage
+\include{summary}
+\include{example_question}
+\end{document}
+
+
+
+
