@@ -64,6 +64,44 @@
     \end{center}
 \end{frame}
 
+
+\begin{frame}{Nobel Prize probabilities}
+\begin{center}
+\begin{tikzpicture}
+\colorlet{circle edge}{blue!50}
+\colorlet{circle area}{blue!20}
+\tikzset{
+     filled/.style={fill=circle area, thick,inner sep=0pt}, 
+     outline/.style={draw=circle edge, thick,inner sep=0pt}}
+
+% The circles
+\node (firstcircle)  [circle,text width=2.5cm, outline] {};
+\node (secondcircle) [circle, right=-1cm of firstcircle,white,text width=2.5cm,outline] {};
+\draw [outline] (firstcircle) circle (1.25cm);
+
+
+
+\node at ([yshift=0.35cm]firstcircle.north){$W$};
+\node at ([yshift=0.35cm]secondcircle.north){$B$};
+
+% The labels
+\node at ([xshift=-0.25cm]firstcircle) {$13$};
+\node at ([xshift= 0.25cm]secondcircle) {$4$};
+\node at ($(firstcircle)!0.5!(secondcircle)$) {3};
+
+% The rectangle and labels
+
+\node (box) [fit=(firstcircle)(secondcircle), inner sep=0.75cm,draw,rounded corners] {};
+
+\node at (box.north) [anchor=north] {};
+\node at (box.south west) [anchor=south west] {97};
+\node at (box.south) [anchor=north] {117 total};
+\node at (box.north east) [anchor=south west] {$N$};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
 \begin{frame}{Nobel Prize probabilities - woman}
 \begin{center}
 \begin{tikzpicture}
@@ -141,7 +179,7 @@
 \end{frame}
 
 
-\begin{frame}{Nobel Prize probabilities -  - woman and booker}
+\begin{frame}{Nobel Prize probabilities - woman and booker}
 \begin{center}
 \begin{tikzpicture}
 \colorlet{circle edge}{blue!50}
@@ -241,6 +279,77 @@
 \end{center}
 \crish$$P(W\mbox{ given }B)=3/7\approx 0.43$$\cbla
 \end{frame}
+
+\begin{frame}{Conditional probability}
+  If we have two events \crish$A$\cbla{} and \crish$B$\cbla{} then
+  \crish$$
+  P(A|B)=\frac{P(A\cap B)}{P(B)}
+  $$\cbla{}
+  is the probability of \crish$A$\cbla{} given \crish$B$\cbla{}. This is the \textbf{conditional probability}.
+\end{frame}
+
+
+\begin{frame}{Nobel Prize probabilities - woman given booker}
+\begin{center}
+\begin{tikzpicture}
+\colorlet{circle edge}{blue!50}
+\colorlet{circle area}{blue!20}
+\tikzset{
+     filled/.style={fill=circle area, thick,inner sep=0pt}, 
+     outline/.style={draw=circle edge, thick,inner sep=0pt}}
+
+
+%I know what a hack this is and I am sorry
+\def\acircle{(0.0,0) circle (1.25cm)};
+\def\bcircle{(1.5,0) circle (1.25cm)};
+
+
+
+% The circles
+\node (firstcircle)  [circle,text width=2.5cm, outline] {};
+\node (secondcircle) [circle, right=-1cm of firstcircle,white,text width=2.5cm,filled] {};
+
+\begin{scope}
+  \clip \acircle;
+  \fill[green!20] \bcircle;
+\end{scope}
+
+
+\draw [outline] (firstcircle) circle (1.25cm);
+\draw [outline] (secondcircle) circle (1.25cm);
+
+
+\node at ([yshift=0.35cm]firstcircle.north){$W$};
+\node at ([yshift=0.35cm]secondcircle.north){$B$};
+
+% The labels
+\node at ([xshift=-0.25cm]firstcircle) {$13$};
+\node at ([xshift= 0.25cm]secondcircle) {$4$};
+\node at ($(firstcircle)!0.5!(secondcircle)$) {3};
+
+% The rectangle and labels
+
+\node (box) [fit=(firstcircle)(secondcircle), inner sep=0.75cm,draw,rounded corners] {};
+
+\node at (box.north) [anchor=north] {};
+\node at (box.south west) [anchor=south west] {97};
+\node at (box.south) [anchor=north] {117 total};
+\node at (box.north east) [anchor=south west] {$N$};
+\end{tikzpicture}
+\end{center}
+\crish$$P(W|B)=\frac{P(W\cap B)}{P(B)} = \frac{3/117}{7/117} = \frac{3}{7}\approx 0.43$$\cbla
+\end{frame}
+
+
+
+\begin{frame}{Conditional probability}
+  \crish$$
+  P(A\cap B)=P(A|B)P(B)
+  $$\cbla{}
+means the probability of \crish$A$\cbla{} \textbf{and} \crish$B$\cbla{} is the probability of \crish$B$\cbla{} multiplied by the probability of \crish$A$\cbla{} \textbf{given} \crish$B$\cbla{}.
+\end{frame}
+
+
 
 
 \end{document}
