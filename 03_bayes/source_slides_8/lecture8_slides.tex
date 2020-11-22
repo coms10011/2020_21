@@ -1,11 +1,10 @@
-
 \documentclass{beamer}
 \usepackage[latin1]{inputenc}
 %\usetheme{Montpellier}
 %\usetheme{Boadilla}
 %\usecolortheme[RGB={204,51,255}]{structure}
 %\usecolortheme[named=purple]{structure}
-\usecolortheme[RGB={62,128,62}]{structure}
+\usecolortheme[RGB={128,62,62}]{structure}
 %\definecolor{dark}{rgb}{0.3,0.15,0.3}
 %\definecolor{light}{rgb}{0.8,0.6,0.8}
 %\definecolor{reddish}{rgb}{.5,0.15,0.15}
@@ -18,33 +17,37 @@
 \usepackage{graphicx}
 \usepackage{pstricks}
 
+\usepackage{amssymb}
+
+\usepackage{amsmath}
 \setbeamertemplate{navigation symbols}{}
 
 \newcommand{\crish}{\color{reddish}}
 \newcommand{\cbla}{\color{black}}
 \newcommand{\cred}{\color{red}}
 \newcommand{\cblu}{\color{blue}}
-\newcommand{\cgre}{\color{green}}
 
 \newcommand{\sm}{\color{reddish}$}
-\newcommand{\fm}{$\color{black}{}}
-
-\newcommand{\letter}[1]{\color{blue}\texttt{#1}\color{black}}
-\newcommand{\binary}[1]{\color{red}\texttt{#1}\color{black}}
-
+\newcommand{\fm}{$\color{black}}
 \usepackage{tikz}
 \usetikzlibrary{arrows,decorations.markings,positioning}
+\usetikzlibrary{calc,fit,shapes, backgrounds} 
+
 \usepackage{epstopdf}
-\usetikzlibrary{fit}
-
-\title[Information Theory lecture 5]{The data processing inequality: information theory lecture 5}
-\author{COMSM0075 Information Processing and Brain}
-\institute{\texttt{comsm0075.github.io}}
-\date{September 2020}
-
+\title{Lecture 8: Conditional Independance}
+\author{COMS10014 Mathematics for Computer Science A}
+\institute{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\date{November 2020}
 \begin{document}
 
 \maketitle
+
+\begin{frame}{Independent Events}
+Two events   \crish$A$\cbla{} and   \crish$B$\cbla{} are \textbf{independent} iff 
+  \crish$$P(A|B)=P(A)$$\cbla{}
+  or
+  \crish$$P(A\cap{} B)=P(A)P(B)$$\cbla{}
+\end{frame}
 
 \begin{frame}{Snakes and Ladders or Moksha Patam}
   \begin{center}
@@ -181,31 +184,39 @@
 \end{frame}
 
 \begin{frame}{Probability}
-
-    \crish $X$\cbla, end of the first move, \crish $Y$\cbla, end of
-    the second move and \crish$Z$\cbla{}, the end of the third after
-    doing all the snakes and ladders stuff.
-\vskip 1cm
-
-  \begin{center}
-    \includegraphics[width=3cm]{game.png}
-  \end{center}
+\begin{itemize}
+\item \crish $Xn$\cbla, at place \crish$n$\cbla{} end of the first move,
+\item \crish $Yn$\cbla,  at place \crish$n$\cbla{} end of the second move,
+\item \crish$Zn$\cbla{},  at place \crish$n$\cbla{} end of the third move,
+\end{itemize}  
+after doing all the snakes and ladders stuff.
+\vskip 1cm So \crish$Z99$\cbla{} is the event of getting to 99 at the
+end of the third move.
 \end{frame}
 
 \begin{frame}{Probability}
-  \crish $$ p(Z=99)=0.0031 $$ \cbla
+  \crish $$ P(Z99)=0.0031 $$ \cbla
+  You can work this out by adding
+  \crish
+  \begin{eqnarray*}    
+  P(Z99)&=&P(Z99|Y60\cap{}X15)P(Y60|X15)P(X15)\cr&&+P(Z99|Y60\cap{}X13)P(Y60|X13)P(X13)+\ldots\end{eqnarray*}\cbla{}
 \end{frame}
 
 \begin{frame}{Conditional probability - rolling a four}
-    \crish $$ p(Z=99|X=15)=0.0046 $$ \cbla
+    \crish $$ P(Z99|X15)=0.0046 $$ \cbla
   \begin{center}
     \includegraphics[width=7cm]{game15.jpg}
   \end{center}
 \end{frame}
 
 
+\begin{frame}{Probability}
+  \crish $$ P(Z99)\not=P(Z99|X15) $$ \cbla
+\end{frame}
+
+
 \begin{frame}{Conditional probability - rolling an eight}
-    \crish $$ p(Z=99|X=9)=0.0046 $$ \cbla
+    \crish $$ P(Z99|X9)=0.0046 $$ \cbla
   \begin{center}
     \includegraphics[width=7cm]{game9.jpg}
   \end{center}
@@ -213,14 +224,14 @@
 
 
 \begin{frame}{Conditional probability - rolling a 12}
-    \crish $$ p(Z=99|X=13)=0.0077 $$ \cbla
+    \crish $$ P(Z99|X13)=0.0077 $$ \cbla
   \begin{center}
     \includegraphics[width=7cm]{game13.jpg}
   \end{center}
 \end{frame}
 
 \begin{frame}{Conditional probability - rolling a seven}
-    \crish $$ p(Z=99|X=34)=0 $$ \cbla
+    \crish $$ P(Z99|X34)=0 $$ \cbla
   \begin{center}
     \includegraphics[width=7cm]{game34.jpg}
   \end{center}
@@ -228,19 +239,25 @@
 
 
 \begin{frame}{Conditional probability - getting to 60}
-    \crish $$ p(Z=99|Y=60)=0.0556 $$ \cbla
+    \crish $$ P(Z99|Y60)=0.0556 $$ \cbla
   \begin{center}
     \includegraphics[width=7cm]{game60.jpg}
   \end{center}
 \end{frame}
 
 \begin{frame}{Conditional probability - \crish$X$\cbla{} no longer matters}
-    \crish $$ p(Z=99|Y=60)=p(Z=99|Y=60,X=15) $$ \cbla
+    \crish $$ P(Z99|Y60)=P(Z99|Y60\cap{}X15) $$ \cbla
+  \begin{center}
+    \includegraphics[width=7cm]{game15.jpg}
+  \end{center}
 \end{frame}
 
 
 \begin{frame}{Conditional probability - \crish$X$\cbla{} no longer matters}
-    \crish $$ p(Z=99|Y=60)=p(Z=99|Y=60,X=10) $$ \cbla
+  \crish $$ P(Z99|Y60)=P(Z99|Y60\cap{}X10) $$ \cbla
+    \begin{center}
+    \includegraphics[width=7cm]{game13.jpg}
+  \end{center}
 \end{frame}
 
 
@@ -248,44 +265,14 @@
 \crish$X$\cbla{} and \crish$Z$\cbla{} are conditionally independent:
 \crish
 $$
-p_{X,Z|Y}(x,z|y)=p_{X|Y}(x|y)p_{X|Z}(z|y)
+P(Xn_1\cap{}Zn_3|Yn_2)=P(Xn_1|Yn_2)P(Zn_3|Yn_2)
 $$
 \cbla
 \end{frame}
 
-
-\begin{frame}{Markov chain}
-  We write
- \crish
- $$X\rightarrow Y\rightarrow Z$$
- \cbla
- if \crish$X$\cbla{} and \crish$Z$\cbla{} are conditional indepedent, conditioned on \crish$Y$\cbla{}:
- \crish
-$$
-p_{X,Z|Y}(x,z|y)=p_{X|Y}(x|y)p_{X|Z}(z|y)
-$$
-\cbla
-\end{frame}
-
-
-\begin{frame}{Data processing inequality}
- if
- \crish
- $$X\rightarrow Y\rightarrow Z$$
- \cbla
-then
- \crish
-$$
-I(X,Y)\ge I(X,Z)
-$$
-\cbla
-with equality if and only if  \crish$X\rightarrow Z\rightarrow Y$\cbla
-\end{frame}
-
-\begin{frame}{Data processing inequality}
-  \begin{quote}
-    Processing extracts information, it doesn't add to it.
-  \end{quote}
+\begin{frame}{Conditional independence}
+  \crish$A$\cbla{} and  \crish$C$\cbla{} and \textbf{conditionally independent} given \crish$C$\cbla{} if
+  \crish$$P(A\cap{}C|B)=P(A|B)P(C|B)$$\cbla{}
   \end{frame}
 
 
