@@ -1,0 +1,109 @@
+%test.tex
+%notes for the course Mathematics for Computer Science A COMS10014
+%taught at the University of Bristol
+%2020_21 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\lfoot{COMS10014 - P\&C class test - Conor}
+
+\newif\ifanswers
+\answerstrue
+
+\begin{document}
+
+\section*{Class Test}
+
+\begin{enumerate}
+
+\item This question is about calculating probabilities and conditional probabilities in the context of the dice game craps.
+
+\begin{enumerate}
+  \item A pair of fair six-sided dice is thrown. What is the probability their values will sum to seven?
+  \item The game of craps involves repeated rolls of a pair of dice; it is a gambling game and participants can bet on different outcomes. For this question we will concentrate on the outcome called \lq{}pass\rq{}. There are two phases to the pass game, the first is a single roll called a \lq{}come out\rq{} roll. In the come out roll the player wins if the values sum to seven or 11, they lose if the values sum to two, three or 12; otherwise they progress on to the next phase of the game. What is the probability of these three possibilities?
+  \item From now on we will call the summed value of the two dice \lq{}the value of the roll\rq{}. If the value in the come out roll is not two, three, seven, 11 or 12, that is if the game progresses on to the next phase, the come out value is called the \lq{}point\rq{}. The pair of dice will now be  rolled repeatedly until the roll either gives the value seven, or its value is equal to the point. If it gives the point the player wins, if it gives seven the player loses. As an example, say in the come out round the value is six; six is now the point and the dice are rolled again, say in the next round the value is five, this is equal to neither the point nor seven so the game continues, in the next round a two is rolled and, again, the dice are rolled again, at which point the value is seven, so the game ends with a loss for the player. If the value of the come out roll is four, what is the probability the player will win? It might be useful to think of this as $P(\mbox{value}=4|\mbox{value is 4 or 7})$
+  \item If 
+\begin{enumerate}
+\item $Q_i$ represents the chance of winning if the point is $i$, so, for example, the probability calculated above if $Q_4$
+\item $P_i$ is the probability the point is $i$, so, for example, $P_4=1/12$
+\end{enumerate}
+what is the probability of winning written in terms of $Q_i$ and $P_i$?
+\item What is the probability of winning?
+\end{enumerate}
+  
+\ifanswers
+\textbf{Answer}:\\
+  a) So there are 36 possible pairs of face values, each equally likes, of these 6+1, 5+2, 4+3, 3+4, 2+5 and 1+6 add to seven, so the probability of rolling a six is 1/6.\\
+  b) win is 1/6+1/18 since there are two ways to may 11: 5+6 and 6+5, this is 4/18=2/9. lose is 1/36+1/18+1/36 which is 1/9 and by subraction this leave 2/3 as the chance of going on to the next phase of the game.
+  c) So using Bayes rule
+  $$P(4|4\|7)=\frac{P(4\|7|4)P(4)}{P(4\|7)}$$
+  with $P(4)=3/36$ and $P(7)=6/36$ and $P(4\|7|4)=1$ hence
+  $$P(4|4\|7)=3/(3+6)=1/3$$
+  d) There are two ways of winning, either from the come out roll or a subsequent roll, which must be summed over the possible point values. 
+  $$P(\mbox{first roll is 11 or seven})+\sum_{4,5,6,8,9,10} P_iQ_i=\frac{2}{9}+\sum_{4,5,6,8,9,10} P_iQ_i$$
+  e) So
+  $$\frac{2}{9}+\frac{1}{3}\frac{1}{12}+\frac{2}{5}\frac{1}{9}+\frac{5}{11}\frac{5}{36}+\frac{5}{11}\frac{5}{36}\frac{2}{5}\frac{1}{9}+\frac{1}{3}\frac{1}{12}\approx 0.49$$
+  \fi
+
+\item This is a question about Bayes' theorem.  Exactly a fifth of the
+  people in a town have lycanthropy. There are two tests for
+  lycanthropy fever, ASSAY1 and ASSAY2. When a person goes to a doctor
+  to test for lycanthropy, with probability 2/3 the doctor conducts
+  ASSAY1 on them and with probability 1/3 the doctor conducts ASSAY2
+  on them. When ASSAY1 is done on a person, the outcome is as follows:
+  If the person has the disease, the result is positive with
+  probability 3/4. If the person does not have the disease, the result
+  is positive with probability 1/4. When ASSAY2 is done on a person,
+  the outcome is as follows: If the person has the disease, the result
+  is positive with probability 1. If the person does not have the
+  disease, the result is positive with probability 1/2. A person is
+  picked uniformly at random from the town and is sent to a doctor to
+  test for lycanthropy. The result comes out positive. What is the
+  probability that the person has the disease?\footnote{Taken from allendowney.blogspot.com/2017/02/a-nice-bayes-theorem-problem-medical.html}
+
+  \ifanswers
+  \textbf{Answer}: So let $A$ be the event of ASSAY1, $L$ the event of lycanthropy and $Y$ the event of a positive test. We want $P(L|Y)$. Now
+  \begin{equation}1
+    P(L|Y)=\frac{P(Y|L)P(L)}{P(Y)}
+  \end{equation}
+  so the easy bit is $P(L)=1/5$, we are told that up front.
+  \begin{equation}
+  P(Y|L)=P(Y|L\cap A)P(A)+P(Y|L\cap \bar{A})P(\bar{A})
+  \end{equation}
+  and we know all those numbers so
+  \begin{equation}
+    P(Y|L)=\frac{3}{4}\frac{2}{3}+\frac{1}{3}=\frac{5}{6}
+  \end{equation}
+  We will also need $P(Y|\bar{L})$ which is, by the same approach
+  \begin{equation}
+    P(Y|\bar{L})=\frac{1}{4}\frac{2}{3}+\frac{1}{3}\frac{1}{2}=\frac{1}{3}
+  \end{equation}
+  Hence
+  \begin{equation}
+    P(Y)=P(Y|L)P(L)+P(Y|\bar{L})P(\bar{L})=\frac{5}{6}\frac{1}{5}+\frac{1}{3}\frac{4}{6}=\frac{13}{30}
+  \end{equation}
+  so
+  \begin{equation}
+    P(L|Y)=\frac{1/6}{13/30}=\frac{5}{13}
+  \end{equation}
+  \fi
+
+  \end{enumerate}
+  
+\end{document}
+
