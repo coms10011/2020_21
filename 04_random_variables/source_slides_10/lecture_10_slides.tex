@@ -1,0 +1,106 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+%\usetheme{Montpellier}
+%\usetheme{Boadilla}
+%\usecolortheme[RGB={204,51,255}]{structure}
+%\usecolortheme[named=purple]{structure}
+\usecolortheme[RGB={128,62,62}]{structure}
+%\definecolor{dark}{rgb}{0.3,0.15,0.3}
+%\definecolor{light}{rgb}{0.8,0.6,0.8}
+%\definecolor{reddish}{rgb}{.5,0.15,0.15}
+\definecolor{dark}{rgb}{0.5,0.3,0.4}
+%\definecolor{light}{rgb}{0.8,0.6,0.8}
+\definecolor{reddish}{rgb}{.7,0.25,0.25}
+\definecolor{greenish}{rgb}{.25,0.7,0.25}
+\definecolor{blueish}{rgb}{.25,0.25,0.7}
+\definecolor{purple}{rgb}{.5,0.0,0.5}
+\usepackage{graphicx}
+\usepackage{pstricks}
+
+\usepackage{amssymb}
+
+\usepackage{amsmath}
+\setbeamertemplate{navigation symbols}{}
+
+\newcommand{\crish}{\color{reddish}}
+\newcommand{\cbla}{\color{black}}
+\newcommand{\cred}{\color{red}}
+\newcommand{\cblu}{\color{blue}}
+\newcommand{\cgre}{\color{green}}
+
+\newcommand{\sm}{\color{reddish}$}
+\newcommand{\fm}{$\color{black}}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.markings,positioning}
+\usetikzlibrary{calc,fit,shapes, backgrounds} 
+
+\usepackage{epstopdf}
+\title{Lecture 10: Random Variables}
+\author{COMS10014 Mathematics for Computer Science A}
+\institute{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\date{November 2020}
+\begin{document}
+
+\maketitle
+
+\begin{frame}{A random variable}
+
+  A \textbf{random variable} is a map from outcomes to real numbers.
+
+\end{frame}
+
+\begin{frame}{A dice example}
+If a pair of dice are rolled the space of outcomes might be the set of values:\\ \crish{}$X=\{$(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (2,1), (2,2), (2,3), (2,4), (2,5), (2,6), (3,1), (3,2), (3,3), (3,4), (3,5), (3,6), (4,1), (4,2), (4,3), (4,4), (4,5), (4,6), (5,1), (5,2), (5,3), (5,4), (5,5), (5,6), (6,1), (6,2), (6,3), (6,4), (6,5), (6,6)$\}$\cbla{} 
+\end{frame}
+
+\begin{frame}{An random variable}
+  Let \crish$S$\cbla{}  be the random variable which maps a dice roll to the total value:
+  \crish$$S:(n,m)\mapsto n+m$$\cbla{}
+  so \crish$S[(3,2)]=5$\cbla{}.
+\end{frame}
+
+\begin{frame}{An event}
+  A value of the random variable \crish$S=5$\cbla{} corresponds to an event:
+  \crish$$
+  \{x\in X|S(x)=5\}=\{(1,4), (2,3), (3,2), (4,1)\}
+  $$\cbla{}
+\end{frame}
+
+\begin{frame}{Probabilities of random variables}
+  We write \crish$p_S(s)$\cbla{}  to mean the probability of the event where \crish$S=s$\cbla{}:
+  \crish$$
+  p_S(s)=P(\{x\in X|S(x)=s\})
+  $$\cbla{}
+\end{frame}
+
+
+\begin{frame}{Probability example}
+  \crish$$
+  p_S(5)=P(\{(1,4), (2,3), (3,2), (4,1)\})=\frac{4}{36}=\frac{1}{9}
+  $$\cbla{}
+\end{frame}
+
+\begin{frame}{Probability distribution}
+\color{purple}
+  \begin{center}
+\begin{tabular}{c|ccccccccccc}
+$S$&2&3&4&5&6&7&8&9&10&11&12\\
+  \hline
+\rule{0pt}{3ex}$p_S$&$\frac{1}{36}$&$\frac{1}{18}$&$\frac{1}{12}$&$\frac{1}{9}$&$\frac{5}{36}$&$\frac{1}{6}$&$\frac{5}{36}$&$\frac{1}{9}$&$\frac{1}{12}$&$\frac{1}{18}$&$\frac{1}{36}$
+\end{tabular}
+  \end{center}
+\cbla{} A table like this is called a \textbf{probability distribution}.
+  \end{frame}
+
+\begin{frame}{Frequencies}
+  Often we interpret the probability as the frequency:
+  \crish$$
+  \frac{\mbox{number of times we get the value }S=s}{\mbox{number of samples we take}}\rightarrow p_S(s)
+  $$\cbla{}
+\end{frame}
+
+
+
+
+\end{document}
+
