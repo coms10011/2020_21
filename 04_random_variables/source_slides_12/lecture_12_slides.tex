@@ -79,7 +79,7 @@ this is the \textbf{mean}, often called \crish$\mu$\cbla{}.
   
 The expect value of \crish$X$\cbla{}  is also referred to as the \textbf{first
   moment}; the \lq{}first\rq{} bit is because it is the expectation
-value for the first power of $\cbla{}X$\cbla{} .
+value for the first power of \crish$X$\cbla{} .
 
 \end{frame}
 
@@ -91,20 +91,19 @@ value for the first power of $\cbla{}X$\cbla{} .
 &0&1&2&3\\
   \hline
   \rule{0pt}{3ex}
-$p_X(x)$\frac{1}{8}$&$\frac{3}{8}$&$\frac{3}{8}$&$\frac{1}{8}$
+$p_X(x)$&$\frac{1}{8}$&$\frac{3}{8}$&$\frac{3}{8}$&$\frac{1}{8}$
 \end{tabular}
 \end{center}
 \cbla{}
 \crish$$
 \langle X\rangle =0\times\frac{1}{8}+1\times\frac{3}{8}+2\times\frac{3}{8}+3\times \frac{1}{8}=\frac{3+6+3}{8}=\frac{3}{2}
 $$\cbla{}
-  \end{center}
 \end{frame}
   
 \begin{frame}{Sample mean}
   If we sample multiple times for the sample space and get
   \crish$$\{x_1,x_2,\ldots,x_n\}$$\cbla{}
-  as values, when the probabilities are given by \crish$p_X(x)$$\cbla{} then the sample mean approaches the expected value:
+  as values, when the probabilities are given by \crish$p_X(x)$\cbla{} then the sample mean approaches the expected value:
   \crish$$
   \frac{1}{n}\sum_i x_i \rightarrow \langle X\rangle
   $$\cbla{}
@@ -131,7 +130,7 @@ $p_X$&1/8&3/8&3/8&1/8
 \end{tabular}
 \end{center}
   \cbla{}
-  has expected value \crish$1.5$\cbla{} and
+  has expected value is \crish$1.5$\cbla{} and
   \crish$$
   V(X)=0.75
   $$\cbla{}
@@ -148,18 +147,40 @@ $p_X$&1/8&3/8&3/8&1/8
 \end{tabular}
 \end{center}
   \cbla{}
-  has expected value \crish$1.5$\cbla{} and
+  has expected value is \crish$1.5$\cbla{} and
   \crish$$
   V(Y)=0.5
   $$\cbla{}
 \end{frame}
+
+\begin{frame}{More names}
+
+\crish$\langle X^2\rangle$\cbla{}  is called the \textbf{second
+  moment}, the variance is called the \textbf{second central moment};
+the \lq{}central\rq{} indicates that it is the second moment you get
+if you take away the mean first.
+
+\end{frame}
+
+\begin{frame}{Other moments}
+
+There are other moments use to describe distributions such as \textbf{skewness} based on the third central moment:
+\crish$$
+s=\frac{1}{\sigma^3}\langle(X-\mu)^3\rangle
+$$\cbla{}
+and the kurtosis based on the fourth
+\crish$$
+\kappa=\frac{1}{\sigma^4}\langle(X-\mu)^4\rangle
+$$\cbla{}
+\end{frame}
+
 
 \begin{frame}{Nice properties}
   Scalar multiplication
 \crish$$
     \langle c g(X)\rangle =\sum_x cg(x)p(x)=c\sum_x g(x)p(x)=c\langle g(X)\rangle
 $$\cbla{}
-Also, trivially:
+Also, trivially
 \crish$$
 \langle 1\rangle=\sum_x p(x)=1
 $$\cbla{}
@@ -167,10 +188,29 @@ Additive
 \crish
 \begin{eqnarray*}
 \langle g_1(X)+g_2(X)\rangle &=&\sum_x [g_1(x)+g_2(x)]p(x)\cr
-&&=\sum_x g_1(x)p(x)+\sum_x g_2(x)p(x)=\langle g_1(X)\rangle+\langle g_2(X)\rangle
+&&=\sum_x g_1(x)p(x)+\sum_x g_2(x)p(x)\cr
+&&=\langle g_1(X)\rangle+\langle g_2(X)\rangle
 \end{eqnarray*}
 \cbla{} 
 \end{frame}
+
+\begin{frame}{Another formula for variance}
+\crish$$
+V(X)=\langle (X-\mu)^2\rangle=\langle (X^2-2\mu X+\mu^2)\rangle
+$$\cbla{}
+Now, using the additive property
+\crish$$
+V(X)=\langle X^2 \rangle -2\mu\langle X\rangle +\langle \mu^2 \rangle
+$$\cbla{}
+Finally, noting \crish$\mu=\langle X\rangle$\cbla{},
+\crish$$
+V(X)=\langle X^2 \rangle - \mu^2 
+$$\cbla{}
+
+\end{frame}
+
+
+
 
 \end{document}
 
