@@ -1,0 +1,176 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+%\usetheme{Montpellier}
+%\usetheme{Boadilla}
+%\usecolortheme[RGB={204,51,255}]{structure}
+%\usecolortheme[named=purple]{structure}
+\usecolortheme[RGB={128,62,62}]{structure}
+%\definecolor{dark}{rgb}{0.3,0.15,0.3}
+%\definecolor{light}{rgb}{0.8,0.6,0.8}
+%\definecolor{reddish}{rgb}{.5,0.15,0.15}
+\definecolor{dark}{rgb}{0.5,0.3,0.4}
+%\definecolor{light}{rgb}{0.8,0.6,0.8}
+\definecolor{reddish}{rgb}{.7,0.25,0.25}
+\definecolor{greenish}{rgb}{.25,0.7,0.25}
+\definecolor{blueish}{rgb}{.25,0.25,0.7}
+\definecolor{purple}{rgb}{.5,0.0,0.5}
+\usepackage{graphicx}
+\usepackage{pstricks}
+
+\usepackage{amssymb}
+
+\usepackage{amsmath}
+\setbeamertemplate{navigation symbols}{}
+
+\newcommand{\crish}{\color{reddish}}
+\newcommand{\cbla}{\color{black}}
+\newcommand{\cred}{\color{red}}
+\newcommand{\cblu}{\color{blue}}
+\newcommand{\cgre}{\color{green}}
+
+\newcommand{\sm}{\color{reddish}$}
+\newcommand{\fm}{$\color{black}}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.markings,positioning}
+\usetikzlibrary{calc,fit,shapes, backgrounds} 
+
+\usepackage{epstopdf}
+\title{Lecture 12: Expected values}
+\author{COMS10014 Mathematics for Computer Science A}
+\institute{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\date{November 2020}
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Expected values}
+
+If \crish$g(x)$\cbla{} 
+is a function we define the \textbf{expected value} of \crish$g(X)$\cbla{}  as
+\crish$$
+\langle g(X)\rangle = \sum_x p(x)g(x)
+$$\cbla{}
+
+\end{frame}
+
+
+\begin{frame}{Expected values}
+If \crish$g(x)$\cbla{} 
+is a function we define the \textbf{expected value} of \crish$g(X)$\cbla{}  as
+\crish$$
+\langle g(X)\rangle = \sum_x p(x)g(x)
+$$\cbla{}
+or, in another common notation
+\crish$$
+E[g(X)]=\langle g(X)\rangle
+$$\cbla{}
+\end{frame}
+
+
+\begin{frame}{Expected values}
+If \crish$g(x)=x$\cbla{} we get the \textbf{expected value} of \crish$X$\cbla{} which is often just called the \textbf{expected value}:
+\crish$$
+\langle X\rangle = \sum_x xp(x)
+$$\cbla{} If \crish$p(x)$\cbla{} is representing the frequencies, then
+this is the \textbf{mean}, often called \crish$\mu$\cbla{}.
+\end{frame}
+
+\begin{frame}{More names for the same thing}
+  
+The expect value of \crish$X$\cbla{}  is also referred to as the \textbf{first
+  moment}; the \lq{}first\rq{} bit is because it is the expectation
+value for the first power of $\cbla{}X$\cbla{} .
+
+\end{frame}
+
+\begin{frame}{Example}
+  \crish$X$\cbla{}  is the number of heads if a coin is flipped three times.
+  \color{purple}
+  \begin{center}
+\begin{tabular}{c|cccc}
+&0&1&2&3\\
+  \hline
+  \rule{0pt}{3ex}
+$p_X(x)$\frac{1}{8}$&$\frac{3}{8}$&$\frac{3}{8}$&$\frac{1}{8}$
+\end{tabular}
+\end{center}
+\cbla{}
+\crish$$
+\langle X\rangle =0\times\frac{1}{8}+1\times\frac{3}{8}+2\times\frac{3}{8}+3\times \frac{1}{8}=\frac{3+6+3}{8}=\frac{3}{2}
+$$\cbla{}
+  \end{center}
+\end{frame}
+  
+\begin{frame}{Sample mean}
+  If we sample multiple times for the sample space and get
+  \crish$$\{x_1,x_2,\ldots,x_n\}$$\cbla{}
+  as values, when the probabilities are given by \crish$p_X(x)$$\cbla{} then the sample mean approaches the expected value:
+  \crish$$
+  \frac{1}{n}\sum_i x_i \rightarrow \langle X\rangle
+  $$\cbla{}
+  as \crish$n$\cbla{} goes to infinity.
+\end{frame}
+
+\begin{frame}{Variance}
+  The \textbf{variance} is
+\crish$$
+V(X)=\langle (X-\mu)^2\rangle
+$$\cbla{}
+For this is the square of the
+\textbf{standard deviation}:
+\crish$$V(X)=\sigma^2$$\cbla{}
+\end{frame}
+
+\begin{frame}{Variance measures spread}
+\color{purple}
+  \begin{center}
+\begin{tabular}{c|cccc}
+&0&1&2&3\\
+\hline
+$p_X$&1/8&3/8&3/8&1/8
+\end{tabular}
+\end{center}
+  \cbla{}
+  has expected value \crish$1.5$\cbla{} and
+  \crish$$
+  V(X)=0.75
+  $$\cbla{}
+\end{frame}
+
+
+\begin{frame}{Variance measures spread}
+\color{purple}
+  \begin{center}
+\begin{tabular}{c|cccc}
+&0&1&2&3\\
+  \hline
+  $p_Y$&1/16&7/16&7/16&1/16
+\end{tabular}
+\end{center}
+  \cbla{}
+  has expected value \crish$1.5$\cbla{} and
+  \crish$$
+  V(Y)=0.5
+  $$\cbla{}
+\end{frame}
+
+\begin{frame}{Nice properties}
+  Scalar multiplication
+\crish$$
+    \langle c g(X)\rangle =\sum_x cg(x)p(x)=c\sum_x g(x)p(x)=c\langle g(X)\rangle
+$$\cbla{}
+Also, trivially:
+\crish$$
+\langle 1\rangle=\sum_x p(x)=1
+$$\cbla{}
+Additive
+\crish
+\begin{eqnarray*}
+\langle g_1(X)+g_2(X)\rangle &=&\sum_x [g_1(x)+g_2(x)]p(x)\cr
+&&=\sum_x g_1(x)p(x)+\sum_x g_2(x)p(x)=\langle g_1(X)\rangle+\langle g_2(X)\rangle
+\end{eqnarray*}
+\cbla{} 
+\end{frame}
+
+\end{document}
+
