@@ -1,0 +1,128 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+%\usetheme{Montpellier}
+%\usetheme{Boadilla}
+%\usecolortheme[RGB={204,51,255}]{structure}
+%\usecolortheme[named=purple]{structure}
+\usecolortheme[RGB={128,62,62}]{structure}
+%\definecolor{dark}{rgb}{0.3,0.15,0.3}
+%\definecolor{light}{rgb}{0.8,0.6,0.8}
+%\definecolor{reddish}{rgb}{.5,0.15,0.15}
+\definecolor{dark}{rgb}{0.5,0.3,0.4}
+%\definecolor{light}{rgb}{0.8,0.6,0.8}
+\definecolor{reddish}{rgb}{.7,0.25,0.25}
+\definecolor{greenish}{rgb}{.25,0.7,0.25}
+\definecolor{blueish}{rgb}{.25,0.25,0.7}
+\definecolor{purple}{rgb}{.5,0.0,0.5}
+\usepackage{graphicx}
+\usepackage{pstricks}
+
+\usepackage{amssymb}
+
+\usepackage{amsmath}
+\setbeamertemplate{navigation symbols}{}
+
+\newcommand{\crish}{\color{reddish}}
+\newcommand{\cbla}{\color{black}}
+\newcommand{\cred}{\color{red}}
+\newcommand{\cblu}{\color{blue}}
+\newcommand{\cgre}{\color{green}}
+
+\newcommand{\sm}{\color{reddish}$}
+\newcommand{\fm}{$\color{black}}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.markings,positioning}
+\usetikzlibrary{calc,fit,shapes, backgrounds} 
+
+\usepackage{epstopdf}
+\title{Lecture 9: Na\"{i}ve Bayes Classifier}
+\author{COMS10014 Mathematics for Computer Science A}
+\institute{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\date{November 2020}
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Machine learning and probabilities}
+
+Many learning algorithms can be thought of as machines for
+estimating probabilities, often in the face of insufficient data to
+estimate the probabilities required.
+
+\end{frame}
+
+\begin{frame}{Spam filter}
+\crish$$
+  W=(\mbox{\cblu{}enlargement},\mbox{\cblu{}xxx},\mbox{\cblu{}cheapest},\mbox{\cblu{}pharmaceuticals}, \mbox{\cblu{}satisfied},\mbox{\cblu{}leeds})
+  $$\cbla{}
+\end{frame}
+
+
+\begin{frame}{Spam filter}
+\crish$$
+  W=(\mbox{\cgre{}enlargement},\mbox{\cblu{}xxx},\mbox{\cblu{}cheapest},\mbox{\cblu{}pharmaceuticals}, \mbox{\cblu{}satisfied},\mbox{\cblu{}leeds})
+  $$\cbla{}
+\end{frame}
+
+\begin{frame}{Spam filter}
+\crish$$
+  W=(\mbox{\cblu{}enlargement},\mbox{\cblu{}xxx},\mbox{\cblu{}cheapest},\mbox{\cblu{}pharmaceuticals}, \mbox{\cblu{}satisfied},\mbox{\cgre{}leeds})
+  $$\cbla{}
+\end{frame}
+
+\begin{frame}{Binary vector}
+Say \crish$\textbf{w}$\cbla{}  is a vector of zeros and ones
+indicating the presence or absence of different potential spam words
+in an email.
+\crish$$\textbf{w}=(1,1,0,0,0,1)$$\cbla{}
+for
+\crish$$
+  W=(\mbox{\cblu{}enlargement},\mbox{\cblu{}xxx},\mbox{\crish{}cheapest},\mbox{\crish{}pharmaceuticals}, \mbox{\crish{}satisfied},\mbox{\cblu{}leeds})
+  $$\cbla{}
+\end{frame}
+
+\begin{frame}{Some notation}
+
+  Now let \crish$S$\cbla{}  represent the event of an email being spam.
+\crish$$P(S|\textbf{w})>T$$\cbla{}
+
+\end{frame}
+
+\begin{frame}{Counting}
+  \crish$$
+  P(S|(1,1,0,0,0,1))=\frac{\#\{\mbox{spam with enlargement, xxx and leeds}\}}{\#\{\mbox{all emails with enlargement, xxx and leeds}\}}
+  $$\cbla{}
+  However there are \crish$2^6=64$\cbla{} different \crish$\mathbf{w}$\cbla{}s!
+\end{frame}
+
+\begin{frame}{Bayes}
+  \crish$$
+P(S|\textbf{w})=\frac{P(\textbf{w}|S)P(S)}{P(\textbf{w})}
+$$\cbla{}
+\end{frame}
+
+\begin{frame}{Na\"{i}ve Bayes}
+  Assume, against all common sense, that the words are conditionally independent:
+  \crish\begin{eqnarray*}
+  P((1,1,0,0,0,1)|S)&=&P(w_1=1|S)P(w_2=1|S)P(w_3=0|S)\times\cr&&P(w_4=0|S)P(w_5=0|S)P(w_6=1|S)
+\end{eqnarray*}\cbla{}
+\end{frame}
+
+
+\begin{frame}{Na\"{i}ve Bayes}
+  Assume, against all common sense, that the words are independent:
+  \crish\begin{eqnarray*}
+    P[(1,1,0,0,0,1)]&=&P(w_1=1)P(w_2=1)P(w_3=0)P(w_4=0)\times\cr&&P(w_5=0)P(w_6=1)
+\end{eqnarray*}\cbla{}
+\end{frame}
+
+\begin{frame}{Na\"{i}ve Bayes}
+  \crish$$
+  P(S|\textbf{w})=\frac{P(S)\prod_i P(w_i|S)}{\prod_i P(w_i)}
+  $$\cbla{}
+\end{frame}
+
+
+
+\end{document}
+
