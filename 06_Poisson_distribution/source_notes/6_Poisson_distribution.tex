@@ -1,10 +1,13 @@
 %6_Poisson_distribution.tex
-%notes for the course Probability and Statistics COMS10011
+
+%notes for the course Mathematics for Computer Scientists A
 %taught at the University of Bristol
-%2019_20 Conor Houghton conor.houghton@bristol.ac.uk
-%To the extent possible under law, the author has dedicated all copyright
+%2020_21 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
 %and related and neighboring rights to these notes to the public domain 
 %worldwide. These notes are distributed without any warranty. 
+
 
 \documentclass[11pt,a4paper]{scrartcl}
 \typearea{12}
@@ -21,8 +24,9 @@
 \lstset{language=C}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lfoot{\texttt{coms10011.github.io}}
-\lhead{COMS100011 6\_Poisson\_distribution - Conor}
+\lfoot{\texttt{cs-uob.github.io/COMS10014/}}
+\rfoot{\texttt{coms10011.github.io}}
+\lhead{COMS10014 Poisson Distribution - Conor}
 \begin{document}
 
 \section*{6 Poisson distribution}
@@ -82,7 +86,7 @@ p(r)=\lim_{n\rightarrow\infty}\left(\begin{array}{c}n\\r\end{array}\right)p^r(1-
 \end{equation}
 Since $p$ is the probability of an event in the small interval, it
 will become tiny as $n$ becomes large, so, to deal with quantities
-that remain useful in the limit, let $\lambda=np$. Subsituting this
+that remain useful in the limit, let $\lambda=np$. Substituting this
 in, and expanding out the binomial coefficient:
 \begin{equation}
 p(r)=\lim_{n\rightarrow\infty}\frac{n(n-1)(n-2)\ldots (n-r+1)}{r!}\left(\frac{\lambda}{n}\right)^r\left(1-\frac{\lambda}{n}\right)^{n-r}
