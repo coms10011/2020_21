@@ -1,0 +1,126 @@
+%ws5.tex
+%notes for the course Mathematics for Computer Science A COMS10014
+%taught at the University of Bristol
+%2020_21 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\lfoot{COMS10014 - P\&C ws5 - Conor}
+\begin{document}
+
+\section*{Probability and Combinatorics Worksheet 5 - outline solutions}
+
+
+\subsection*{Questions}
+
+These are the questions you should make sure you work on in the workshop.
+
+\begin{enumerate}
+
+\item A typist makes on average two mistakes per page. What is the probability of a particular page having no errors on it?\\
+  \\
+  \\
+  \textbf{Solutions}: So $\lambda=2$ and hence
+  \begin{equation}
+    p(0)=e^{-2}=0.135
+  \end{equation}  
+
+\item Components are packed in boxes of 20. The probability of a
+  component being defective is 0.1. What is the probability of a box
+  containing 2 defective components?\\ \\ \\ \textbf{Solutions}: This
+  is a trick question in the sense that it is binomial distribution
+  question not a Poisson distribution question; it is about discrete
+  objects, not discrete events in continuous time. So $n=20$ and $p=0.1$ so
+  \begin{equation}
+    p(2)=\left(\begin{array}{c}20\\2\end{array}\right)0.1^20.9^{18}=0.29
+  \end{equation}
+ 
+\item A fisher catches on average one fish every 25 minutes. What is
+  the probability that they catch two fish in an hour?
+  \\ \\ \\ \textbf{Solution}: If he catches a fish every 25
+  minutes then his rate for an hour is 60/25=2.4 so
+\begin{equation}
+p(0)=\frac{2.4^2}{2}e^{-2.4}\approx 0.26
+\end{equation}
+
+ \item A random variable $X$ gives the square of the face value of a six-sided dice. What are the mean and variance of $X$.
+   \\ \\ \\ \textbf{Solution}:
+   So for the mean it is
+   \begin{equation}
+     \mu=\frac{1+4+9+16+25+36}{6}=15.17
+   \end{equation}
+   and the second moment is
+   \begin{equation}
+     \langle X^2\rangle =\frac{1+16+81+256+625+1296}{6}=379.17
+   \end{equation}
+   so
+   \begin{equation}
+     \sigma^2=\langle X^2\rangle-\mu^2=149.1
+   \end{equation}
+   
+\end{enumerate}
+
+\subsection*{Extra questions}
+Do these in the workshop if you have time.
+
+
+\begin{enumerate}
+
+\item For a Poisson process let $T$ be the interval for which the
+process has, on average, one event, so, for this interval $\lambda=1$. What is the probability that there are no events for this interval?\\ \\ \\  
+\textbf{Solution}
+\begin{equation}
+p(0)=\frac{1}{e}=0.37
+\end{equation}
+
+\item Starting with the expression for the mean
+  \begin{equation}
+    \lambda =\sum_{r=0}^\infty \frac{\lambda^r}{r!}re^{-lambda}
+  \end{equation}
+  calculate the variance of the Poisson distribution.\\ \\ \\  
+  \textbf{Solution}: So differentiate both sides with respect to $\lambda$:
+  \begin{equation}
+    1=\sum_{r=0}^\infty r^2 \frac{\lambda^{r-1}}{r!}e^{-lambda}-\sum_{r=0}^\infty \frac{\lambda^r}{r!}re^{-lambda}
+  \end{equation}
+  We do the usual trick of multiplying and dividing by $\lambda$ in the first term, and use the fact the second term is just the mean:
+  \begin{equation}
+    1=\frac{1}{\lambda}\sum_{r=0}^\infty r^2 \frac{\lambda^r}{r!}e^{-lambda}-\lambda
+  \end{equation}
+  Now, note the first term is the second moment, also multiply across by $\lambda$:
+  \begin{equation}
+    \lambda=\langle R^2\rangle-\lambda^2
+  \end{equation}
+  and since $\mu=\lambda$ the righthand side is $\sigma^2$ so
+  \begin{equation}
+    \sigma^2=\lambda
+  \end{equation}
+  
+  
+\item The \textbf{Fano factor} is sometimes used to describe distributions, it is
+  \begin{equation}
+    F=\frac{\sigma^2}{\mu}
+  \end{equation}
+What is the Fano factor for the Poisson distribution?
+\\ \\ \\  
+\textbf{Solution}: well the mean and variance are both $\lambda$ so this is one.
+
+\end{enumerate}
+
+
+\end{document}
+
