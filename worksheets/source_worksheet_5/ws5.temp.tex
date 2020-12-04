@@ -1,0 +1,232 @@
+%ws3.tex
+%notes for the course Mathematics for Computer Science A COMS10014
+%taught at the University of Bristol
+%2020_21 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\lfoot{COMS10014 - P\&C ws3 - Conor}
+\begin{document}
+
+\section*{Worksheet Sheet 2 - outline solutions}
+
+\subsection*{Questions}
+
+\begin{enumerate}
+
+
+\item The illusionist Derren Brown famously flipped a coin on camera
+  so that it landed heads ten times in a row; he claimed that this was
+  because of his mind powers, in fact it was because of his patience,
+  he simply kept trying the trick again and again until it
+  worked. It took him nine hours. What is the probability of a coin landing heads ten times in
+  a row? If you flip a coin ten times what is the probability of
+  getting five heads and five tails?\\ \\ \\ \textbf{Solution}: The chance of 10 heads is
+\begin{equation}
+p(10)=0.5^{10}=0.0009765625
+\end{equation}
+whereas the chance of five heads is
+\begin{equation}
+p(5)=\left(\begin{array}{c}10\\5\end{array}\right)0.5^{10}=0.24609375
+\end{equation}
+
+
+\item You are a con person with a crooked coin, it has a 0.25 chance
+  of a head and a 0.75 chance of a harp. You make a bet with someone; if
+  the coin shows a head you pay them two pounds, if it shows a harp
+  they give you one. What is the mean return from a bet; what is the variance?
+\\ \\ \\
+\textbf{Solution}: So 
+\begin{equation}
+\mu =-2\times 0.25 +1\times 0.75=0.25
+\end{equation}
+and if $X$ is your winnings
+\begin{equation}
+  \langle X^2\rangle=4\times 0.25 +1\times 0.75=1.75
+\end{equation}
+so $\sigma^2=\langle X^2\rangle-\mu^2=1.6875$
+  
+\item For the binomial distribution on $n$ trials, prove
+  $\sigma^2=npq$; this can be done by differenciating $Z$ twice, an
+  easier approach is to differenciate the expression for $\mu=np$:
+  \begin{equation}
+    np=\sum_{r=0}^n \left(\begin{array}{c}n\\r\end{array}\right)rp^rq^{n-r}
+  \end{equation}
+\\ \\ \\ 
+\textbf{Solution}: So
+\begin{equation}
+    np=\sum \sum_{r=0}^n \left(\begin{array}{c}n\\r\end{array}\right)rp^rq^{n-r}
+\end{equation}
+and differentiating both sides and then doing the multiplying and dividing by $p$ or $q$ trick gives
+\begin{equation}
+n=\frac{1}{p}\sum_{r=0}^n r^2p_R(r)-\frac{1}{q}\sum_{r=0}^n r(n-r)p_R(r)
+\end{equation}
+or
+\begin{equation}
+n=\left(\frac{1}{p}+\frac{1}{q}\right)\langle R^2\rangle-\frac{n}{q}\langle R\rangle
+\end{equation}
+and after a bit of algebra and using $\langle R\rangle =np$ we get
+\begin{equation}
+  npq=\langle R^2\rangle -n^2p^2
+\end{equation}
+and we note that the right hand side is $\langle R^2\rangle-\langle R\rangle^2$ which is $\sigma^2$.
+
+\item Like the binomial distribution the geometric probability
+  distribution is related to a series of independent trials where each
+  trial has probability $p$ of success and $q=1-p$ of failure. The
+  geometric probability $p(r)$ is the probability that the $r$th trial
+  is the first success. It is
+\begin{equation}
+p(r)=q^{r-1}p
+\end{equation}
+It can be shown that 
+\begin{equation}
+\sum_{r=1}^\infty p(r)=1
+\end{equation}
+as it must be. You can assume that here. What is the mean of the geometric probability? As a hint, this is done much as for the binomial expansion.
+\\ \\ \\ 
+\textbf{Solution}: So we have
+\begin{equation}
+1=\sum_{r=1}^\infty q^{r-1}p
+\end{equation}
+If we differenciate both sides by $p$ we get
+\begin{equation}
+0=\sum_{r=1}^\infty q^{r-1}-\sum_{r=1}^\infty (r-1)q^{r-2}p
+\end{equation}
+or
+\begin{equation}
+0=\frac{1}{p}\sum_{r=1}^\infty q^{r-1}p-\sum_{r=1}^\infty (r-1)q^{r-2}p
+\end{equation}
+In the second term set $s=r-1$ to get 
+\begin{equation}
+\sum_{r=1}^\infty (r-1)q^{r-2}p=\sum_{s=0}^\infty sq^{s-1}p=\sum_{s=1}^\infty sq^{s-1}p
+\end{equation}
+where we are able to change drop the $s=0$ term in the sum because it gives zero. Now back to the original equation:
+\begin{equation}
+0=\frac{1}{p}\sum_{r=1}^\infty q^{r-1}p-\sum_{s=1}^\infty sq^{s-1}p
+\end{equation}
+Now note that the first sum gives one and the second gives $\mu$ so
+\begin{equation}
+\mu=\frac{1}{p}
+\end{equation}
+
+We weren't asked to prove
+\begin{equation}
+\sum_{r=1}^\infty p(r)=1
+\end{equation}
+but in case you are interested it is discussed here
+\begin{equation}
+\sum_r q^{r-1}p=1
+\end{equation}
+For this we use the expansion
+\begin{equation}
+\frac{1}{1-q}=1+q+q^2+\ldots
+\end{equation}
+you can think of this as coming from the binomial expansion of $(1-q)^{-1}$ using the generalized binomial formula discovered by Newton
+\begin{equation}
+(1+x)^n=\sum_r \frac{n(n-1)\ldots (n-r+1)}{r!}x^r
+\end{equation}
+with $n=-1$; it can also be derived as the Taylor expansion. Either way we have
+\begin{equation}
+\frac{1}{1-q}=\sum_{r=0}^\infty q^r=\sum_{r=1}^\infty q^{r-1}
+\end{equation}
+and since $1-q=p$ this gives the result.
+
+\end{enumerate}
+
+\subsection*{Extra questions}
+
+\begin{enumerate}
+
+\item Oranmore, the village I grew up in had more people with the
+  surname Furey than any other village or town in the world. Since I
+  left the village has expanded ten-fold and has gone from being a
+  small village to a commuter town for Galway. However, when I was young
+  one in ten people in the village had the surname Furey. Imagine
+  there are 35 children in a class at school, what is the probability
+  that five of them were Fureys?
+
+  \textbf{Solution}: So this is just
+  \begin{equation}
+    p(r=5)=\left(\begin{array}{c}35\\5\end{array}\right) \left(\frac{1}{10}\right)^{5}\left(\frac{9}{10}\right)^{30}
+\end{equation}
+which is about $0.14$.
+  
+\item The \textbf{Fano factor} is sometimes used to describe distributions, it is
+  \begin{equation}
+    F=\frac{\sigma^2}{\mu}
+  \end{equation}
+What is the Fano factor for the Poisson distribution?\\
+\\ \\
+\textbf{Solution}: Well the mean is $np$ and the variance is $npq$ so $F=q$.
+
+\item What is the variance of the geometric distribution?\\ \\ \\
+  \textbf{Solution}: Well we have
+  \begin{equation}
+    \frac{1}{p}=\sum_{r=0}^\infty rq^{r-1}p
+  \end{equation}
+  so differentiating both sides gives
+  \begin{equation}
+    -\frac{1}{p^2}=-\sum_{r=0}^\infty r(r-1)q^{r-2}p+\sum_{r=0}^\infty rq^{r-1}
+  \end{equation}
+  and so with a bit of algebra we get
+  \begin{equation}
+    -\frac{1}{p^2}=-\frac{1}{q}\langle R^2\rangle+\left(\frac{1}{q}+\frac{1}{p}\right)\langle R\rangle
+  \end{equation}
+  and substituting for $\langle R\rangle=1/p$ and doing still more algebra we get
+  \begin{equation}
+    \sigma^2=\frac{q}{p^2}
+  \end{equation}
+
+\item The negative binomial distribution models a binomial process
+  where, instead of $n$ trials, the experiment continues until there
+  are $r$ failures. The probability of $k$ successes is
+  \begin{equation}
+    p_K(k)=\left(\begin{array}{c}k+r-1\\k\end{array}\right)(1-p)^rp^k
+  \end{equation}
+Obviously if
+  \begin{equation}
+    Z=\sum_{k=0}^\infty p_K(k)
+  \end{equation}
+  then $Z=1$; this relies on the negative binomial expansion and
+  you don't need to do this calculation. By differenciating calculate
+  the mean of the negative binomial distribution.\\
+\\ \\
+\textbf{Solution}: It's just the usual craic, we differentiate $Z$, for the same of space lets write
+\begin{equation}
+  C_k=\left(\begin{array}{c}k+r-1\\k\end{array}\right)
+\end{equation}
+and we get
+\begin{equation}
+  0=\sum_{k=0}^\infty C_k k (1-p)^rp^{k-1}-\sum_{k=0}^\infty C_k r(1-p)^{r-1}p^k
+\end{equation}
+and so
+\begin{equation}
+  \frac{1}{p}\sum_{k=0}^\infty C_k k q^rp^k=\frac{1}{q}\sum_{k=0}^\infty C_k rq^rp^k
+\end{equation}
+or
+\begin{equation}
+  \langle K\rangle = \frac{pr}{q}
+\end{equation}
+
+
+\end{enumerate}
+  
+
+\end{document}
+
