@@ -90,16 +90,16 @@ p(0)=\frac{1}{e}=0.37
 
 \item Starting with the expression for the mean
   \begin{equation}
-    \lambda =\sum_{r=0}^\infty \frac{\lambda^r}{r!}re^{-lambda}
+    \lambda =\sum_{r=0}^\infty \frac{\lambda^r}{r!}re^{-\lambda}
   \end{equation}
   calculate the variance of the Poisson distribution.\\ \\ \\  
   \textbf{Solution}: So differentiate both sides with respect to $\lambda$:
   \begin{equation}
-    1=\sum_{r=0}^\infty r^2 \frac{\lambda^{r-1}}{r!}e^{-lambda}-\sum_{r=0}^\infty \frac{\lambda^r}{r!}re^{-lambda}
+    1=\sum_{r=0}^\infty r^2 \frac{\lambda^{r-1}}{r!}e^{-lambda}-\sum_{r=0}^\infty \frac{\lambda^r}{r!}re^{-\lambda}
   \end{equation}
   We do the usual trick of multiplying and dividing by $\lambda$ in the first term, and use the fact the second term is just the mean:
   \begin{equation}
-    1=\frac{1}{\lambda}\sum_{r=0}^\infty r^2 \frac{\lambda^r}{r!}e^{-lambda}-\lambda
+    1=\frac{1}{\lambda}\sum_{r=0}^\infty r^2 \frac{\lambda^r}{r!}e^{-\lambda}-\lambda
   \end{equation}
   Now, note the first term is the second moment, also multiply across by $\lambda$:
   \begin{equation}
