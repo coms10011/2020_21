@@ -1,0 +1,188 @@
+%ws6.tex
+%notes for the course Mathematics for Computer Science A COMS10014
+%taught at the University of Bristol
+%2020_21 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\lfoot{COMS10014 - P\&C ws6 - Conor}
+\begin{document}
+
+\section*{Probability and Combinatorics Worksheet 6}
+
+
+\subsection*{Questions}
+
+These are the questions you should make sure you work on in the workshop.
+
+\begin{enumerate}
+
+
+\item The distribution of tree heights in a christmas tree forest is 
+\begin{equation}
+p(h)=\left\{\begin{array}{cc}0.3& 0\le h <2\\0.2& 2\le h<4\\0&\mbox{otherwise}\end{array}\right.
+\end{equation}
+What is the mean height of trees in the forest?
+\\ \\ \\
+\textbf{Solution}: So 
+\begin{equation}
+\mu =\langle H\rangle=\int_{-\infty}^\infty hf(h)=\int_{0}^2 {0.3h}dh+\int_2^4{0.2h}dh
+\end{equation}
+and
+\begin{equation}
+\int_{0}^2 {0.3h}dh=\left.0.3\frac{h^2}{2}\right|_0^2=0.6
+\end{equation}
+and
+\begin{equation}
+\int_{2}^4 {0.2h}dh=\left.0.2\frac{h^2}{2}\right|_2^4=0.2 (8-2)=1.2
+\end{equation}
+so $\mu=1.8$.
+
+\item Work out the mean and variance for the distribution
+  \begin{equation}
+    p(x)=\left\{\begin{array}{ll}2/a&x\in [-a,a]\\0&\mbox{otherwise}\end{array}\right.
+  \end{equation}
+\\ \\ \\
+\textbf{Solution}: So in this case
+\begin{equation}
+  \langle X\rangle =\int_{-\infty}^\infty xp(x)dx=\frac{2}{a}\int_{-a}^a xdx=0
+\end{equation}
+and
+\begin{equation}
+  \langle X^2\rangle =\int_{-\infty}^\infty x^2p(x)dx=\frac{2}{a}\int_{-a}^a x^2dx=\left.\frac{2x^3}{3a}\right]_{-a}^a=\frac{4a^2}{3}
+\end{equation}
+and here the variance is the same as the second moment because the mean is zero.
+  
+\item Starting from the expression for the mean
+  \begin{equation}
+    \mu=\frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^\infty xe^{-\frac{(x-\mu)^2}{2\sigma^2}}dx
+  \end{equation}
+  show the Gau\ss{}ian distribution has variance $\sigma^2$.
+\\ \\ \\
+\textbf{Solution}: Differenciate with respect to $\mu$ to get
+\begin{equation}
+  1=\frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^\infty x\frac{x-\mu}{\sigma^2}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx
+\end{equation}
+and multiply across by the $\sigma^2$ to get
+\begin{equation}
+  \sigma^2=\frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^\infty x(x-\mu)e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx
+\end{equation}
+and then a bit of algebra gives
+\begin{equation}
+  \sigma^2=\frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^\infty x^2e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx-\mu\frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^\infty xe^{-\frac{(x-\mu)^2}{2\sigma^2}}dx
+\end{equation}
+
+\item The size of a standard croquet ball is 3 5/8
+  inches\footnote{Everything in croquet is measured in old timey
+    units}. The height of a croquet hoop is 3 3/4 inches. If a not
+  very good croquet-ball making machine makes croquet balls whose mean
+  matches the standard and with standard deviation 1/8 inch, what is
+  the chance it will make a ball too large to fit through the hoop?
+  You can write the solution in terms of the error function.
+  \\ \\ \\ \textbf{Solution}: So
+\begin{equation}
+z=\frac{x-\mu}{\sqrt{2}\sigma}
+\end{equation}
+so for $x_1=3.75$ in, we have
+\begin{equation}
+z_1=\frac{1/8}{\sqrt{2}/8}=\frac{1}{\sqrt{2}}
+\end{equation}
+Any height bigger than this will not fit, so $z_2=\infty$ and $\mbox{erf}{\infty}=1$ so
+\begin{equation}
+\mbox{Prob}(x>3.75)=\frac{1}{2}[1-\mbox{erf}(1/\sqrt{2})]\approx 0.16
+\end{equation}
+where the 0.16 is given for interest, it wasn't expected as part of the answer.
+
+  
+
+\end{enumerate}
+
+\subsection*{Extra questions}
+
+\begin{enumerate}
+
+  
+\item This will look like a long question but it is almost all
+  background and the question is not too bad when you actually read
+  through it. In particle physics when a collider is being used to
+  find a new particle like the Higgs boson or the top squark
+  scientists don't detect the sought after particle directly since it
+  usually decays almost straight away, instead they detect the more
+  common particles that particle will decay into, for example, a Higgs
+  boson can decay in to two photons and these can be detected. Roughly
+  speaking scientists count these events. However, the whole situation
+  is very messy and there will always be some events even if the
+  particle doesn't exist at the energy being examined. The amount of
+  these background events will fluctuate from experiment to
+  experiment, typically like a Gau\ss{}ian. The scientific team is
+  allowed to claim they have discovered the particle if the number of
+  events they measure is more than five standard deviations above
+  what would be expected if the particle didn't exist. What is the
+  probability of this \lq{}discovery\rq{} happening by chance?
+  \\ \\ \\ \textbf{Solution}: So we are interested in the probability of a results bigger than $\mu+5\sigma$. Now
+\begin{equation}
+z_1=\frac{\mu+5\sigma-\mu}{\sqrt{2}\sigma}=\frac{5}{\sqrt{2}}
+\end{equation}
+and
+\begin{equation}
+\mbox{Prob}(x>\mu+5\sigma)=\frac{1}{2}[1-\mbox{erf}(5/\sqrt(2))]
+\end{equation}
+which is about one chance in 3.5 million.
+
+\item Another useful distribution is the exponential distribution:
+$$
+p(x)=\left\{\begin{array}{cc}\lambda e^{-\lambda x}& x\ge 0\\ 0&\mbox{otherwise}\end{array}\right.
+$$
+What is the probability $\mbox{Prob}(x_1 < x <x_2)$ where $x_1$ and $x_2$ are both positive.
+  \\ \\ \\ \textbf{Solution}: 
+\begin{equation}
+\mbox{Prob}(x_1 < x <x_2)=\lambda \int_{x_1}^{x_2} e^{-\lambda y}dy=\left. e^{-\lambda y} \right]_{x_1}^{x_2}=e^{-\lambda x_1}-e^{-\lambda x_2}
+\end{equation}
+
+\item What is the mean of the exponential distribution?
+  \\ \\ \\ \textbf{Solution}: Well
+  \begin{equation}
+    1=\lambda\int_0^\infty e^{-\lambda x}dx
+  \end{equation}
+  and differentiate both sides with respect to $\lambda$ to get
+  \begin{equation}
+    0=\int_0^\infty e^{-\lambda x}dx-\lambda \int_0^\infty xe^{-\lambda x}dx
+  \end{equation}
+  so
+  \begin{equation}
+    \langle X\rangle=\frac{1}{\lambda}
+  \end{equation}
+    
+\item Australorp hens weigh on average 4kg with a standard deviation
+  0.25kg; in one farm australorps who weigh less than 3.5kg are fed
+  \textsl{patent chicken spicer}, a mixture of chalk, corn and
+  pepper. What fraction of these hens are fed patent chicken spicer?
+  \\ \\ \\ \textbf{Solution}: Here is a picture of one of my hens, an Australorp, being fed a raspberry.
+  \begin{center}
+    \includegraphics[width=8cm]{hen.jpg}
+  \end{center}
+  So we are asking for $P(x<3.5)$ and since
+  $$z=\frac{3.5-4}{0.25\sqrt{2}}=\sqrt{2}$$
+    the probability, and hence the proportion, is
+    $$P(x<3.5)=\frac{1}{2}[1-\mbox{erf}\,(\sqrt{2})]\approx 0.02275$$
+
+  
+\end{enumerate}
+
+\end{document}
+

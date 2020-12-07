@@ -1,0 +1,155 @@
+%ws6.tex
+%notes for the course Mathematics for Computer Science A COMS10014
+%taught at the University of Bristol
+%2020_21 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2020\_21}}
+\lfoot{COMS10014 - P\&C ws6 - Conor}
+\begin{document}
+
+\section*{Probability and Combinatorics Worksheet 6}
+
+\subsection*{Useful facts}
+
+\begin{itemize}
+
+
+\item \textbf{Integrating a polnomial}
+\begin{equation}
+\int x^n dx=\frac{x^{n+1}}{n+1}
+\end{equation}
+so the definite integral is
+\begin{equation}
+\int_{a}^b x^n dx=\frac{b^{n+1}}{n+1}-\frac{a^{n+1}}{n+1}
+\end{equation}
+
+
+\item \textbf{Integrating an exponential}
+\begin{equation}
+\int_{x_1}^{x_2} e^{ax} dx=\frac{1}{a}\left(e^{x_2}-e^{x_1}\right)
+\end{equation}
+
+
+\item \textbf{The Gau\ss{}ian distribution}:
+  \begin{equation}
+    p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+  \end{equation}
+  
+
+\item Working out \textbf{probabilities for the Gau\ss{}ian}:
+  \begin{equation}
+\mbox{Prob}(x_1<x<x_2)=\frac{1}{2}[\mbox{erf}\,(z_2)-\mbox{erf}\,(z_1)]
+  \end{equation}
+where
+\begin{equation}
+z=\frac{x-\mu}{\sqrt{2}\sigma}
+\end{equation}
+The error function 
+\begin{equation}
+  \mbox{erf}\,(z)=\frac{1}{\sqrt{\pi}}\int_{-z}^ze^{-y^2}dy=\frac{2}{\sqrt{\pi}}\int_0^ze^{-y^2}dy
+\end{equation}
+goes from -1 to one, so $\mbox{erf}\,(-\infty)=-1$ and $\mbox{erf}\,(\infty)=1$.
+
+
+  
+\end{itemize}
+
+
+
+\subsection*{Questions}
+
+These are the questions you should make sure you work on in the workshop.
+
+\begin{enumerate}
+
+
+\item The distribution of tree heights in a christmas tree forest is 
+\begin{equation}
+p(h)=\left\{\begin{array}{cc}0.3& 0\le h <2\\0.2& 2\le h<4\\0&\mbox{otherwise}\end{array}\right.
+\end{equation}
+What is the mean height of trees in the forest?
+
+\item Work out the mean and variance for the distribution
+  \begin{equation}
+    p(x)=\left\{\begin{array}{ll}2/a&x\in [-a,a]\\0&\mbox{otherwise}\end{array}\right.
+  \end{equation}
+
+\item Starting from the expression for the mean
+  \begin{equation}
+    \mu=\frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^\infty xe^{-\frac{(x-\mu)^2}{2\sigma^2}}dx
+  \end{equation}
+  and differentiating with respect to $\mu$ show the Gau\ss{}ian
+  distribution has variance $\sigma^2$. This is a tricky question.
+
+\item The size of a standard croquet ball is 3 5/8
+  inches\footnote{Everything in croquet is measured in old timey
+    units}. The height of a croquet hoop is 3 3/4 inches. If a not
+  very good croquet-ball making machine makes croquet balls whose mean
+  matches the standard and with standard deviation 1/8 inch, what is
+  the chance it will make a ball too large to fit through the hoop?
+  You can write the solution in terms of the error function.
+
+  
+
+\end{enumerate}
+
+\subsection*{Extra questions}
+
+Do these in the workshop if you have time.
+
+\begin{enumerate}
+
+  
+\item This will look like a long question but it is almost all
+  background and the question is not too bad when you actually read
+  through it. In particle physics when a collider is being used to
+  find a new particle like the Higgs boson or the top squark
+  scientists don't detect the sought after particle directly since it
+  usually decays almost straight away, instead they detect the more
+  common particles that particle will decay into, for example, a Higgs
+  boson can decay in to two photons and these can be detected. Roughly
+  speaking scientists count these events. However, the whole situation
+  is very messy and there will always be some events even if the
+  particle doesn't exist at the energy being examined. The amount of
+  these background events will fluctuate from experiment to
+  experiment, typically like a Gau\ss{}ian. The scientific team is
+  allowed to claim they have discovered the particle if the number of
+  events they measure is more than five standard deviations above
+  what would be expected if the particle didn't exist. What is the
+  probability of this \lq{}discovery\rq{} happening by chance?
+
+
+\item Another useful distribution is the exponential distribution:
+$$
+p(x)=\left\{\begin{array}{cc}\lambda e^{-\lambda x}& x\ge 0\\ 0&\mbox{otherwise}\end{array}\right.
+$$
+What is the probability $\mbox{Prob}(x_1 < x <x_2)$ where $x_1$ and $x_2$ are both positive.
+
+\item What is the mean of the exponential distribution?
+
+  
+\item Australorp hens weigh on average 4kg with a standard deviation
+  0.25kg; in one farm australorps who weigh less than 3.5kg are fed
+  \textsl{patent chicken spicer}, a mixture of chalk, corn and
+  pepper. What fraction of these hens are fed patent chicken spicer?
+  
+\end{enumerate}
+
+\end{document}
+
